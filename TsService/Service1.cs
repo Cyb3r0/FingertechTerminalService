@@ -15,11 +15,17 @@ namespace TsService
 {
     public partial class Service1 : ServiceBase
     {
+
+        utilsNitgen utils;
         public Service1()
         {
 
             InitializeComponent();
+
+            utils = new utilsNitgen();
+
             Server();
+
         }
 
         protected override void OnStart(string[] args)
@@ -32,14 +38,13 @@ namespace TsService
 
         private void Server()
         {
-            utilsNitgen utils = new utilsNitgen();
+
             TcpListener server = null;
             try
             {
-                // Set the TcpListener on port 13000.
+                
                 Int32 port = 13000;
-                //IPAddress ip = Dns.GetHostAddresses(Dns.GetHostName()).Where(address => address.AddressFamily == AddressFamily.InterNetwork).First();
-                //IPAddress localAddr = IPAddress.Parse(Dns.GetHostEntry(Dns.GetHostName()));
+               
 
                 IPAddress ip = IPAddress.Parse(File.ReadAllText(@"C:\\Windows\\fingertechts.ini"));
 
@@ -47,43 +52,43 @@ namespace TsService
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 server.Start();
 
-                // Buffer for reading data
-                Byte[] bytes = new Byte[10000];
+               
+                Byte[] bytes = new Byte[15000];
                 String data = null;
-
-                // Enter the listening loop.
+               
                 while (true)
-                {               
+                {
+
+                    String digital = null;
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("Connected!");
-                    
+                    Console.WriteLine("Connected!");                   
 
-                    String digital = utils.Enroll();
-                    data = null;
-                    NetworkStream stream = client.GetStream();
-                    int i;
-                    //ta
-                  
-                        // converte data bytes para String ASCII.
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, 1);
-                        Console.WriteLine("Received: {0}", data);
-
-                      
-
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(digital);
-
-                        // envia resposta
-                        stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine("Sent: {0}", data);
-                    
+                    data = null;                  
+                    NetworkStream stream = client.GetStream();                 
+                    int i = stream.Read(bytes, 0, bytes.Length);
+                    data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
 
                     
+                    switch (data)
+                    {
+                        case "0":
+                            digital = utils.Enroll();
+                            break;
+                        case "1":
+                            digital = utils.Capturar();                          
+                            break;
+                           
+                    }
+                    //Converter para array de byte
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(digital);
+                    //envia resposta de volta
+                    stream.Write(msg, 0, msg.Length);
                     client.Close();
                 }
             }
             catch (SocketException e)
             {
-                Console.WriteLine("SocketException: {0}", e);
+              
             }
             finally
             {
@@ -94,6 +99,9 @@ namespace TsService
 
           
         }
-    
+
+     
     }
+    
+    
 }
