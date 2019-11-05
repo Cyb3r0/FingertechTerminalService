@@ -1,0 +1,12 @@
+C:\Users\Lincoln\source\repos\TsService\TsService\bin\x86\Debug\TsService.exe.config
+C:\Users\Lincoln\source\repos\TsService\TsService\bin\x86\Debug\TsService.exe
+C:\Users\Lincoln\source\repos\TsService\TsService\bin\x86\Debug\TsService.pdb
+C:\Users\Lincoln\source\repos\TsService\TsService\bin\x86\Debug\NITGEN.SDK.NBioBSP.dll
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.Service1.resources
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.csproj.GenerateResource.cache
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.csproj.CoreCompileInputs.cache
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.csproj.CopyComplete
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.exe
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.pdb
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.csprojAssemblyReference.cache
+C:\Users\Lincoln\source\repos\TsService\TsService\obj\x86\Debug\TsService.ProjectInstaller.resources
